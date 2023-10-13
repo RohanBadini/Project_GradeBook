@@ -4,6 +4,7 @@ import org.junit.jupiter.api.*;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+//Represents the Test for Course class with name, credits and grade
 class CourseTest {
 
     private Course cpsc310;

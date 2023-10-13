@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+//Represents a Test for GradeBook with List of Courses and total credits
 public class GradeBookTest {
     private GradeBook testGradeBook;
     private Course cpsc310;

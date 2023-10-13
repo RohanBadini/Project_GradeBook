@@ -5,18 +5,20 @@ import model.GradeBook;
 
 import java.util.Scanner;
 
-///This class is modeled after Teller App https://github.students.cs.ubc.ca/CPSC210/TellerApp
+///This class is inspired from Teller App https://github.students.cs.ubc.ca/CPSC210/TellerApp
 
+//Represents Student Grade Book Application
 public class GradeBookApp {
     private Scanner input;
     private GradeBook gradeBook;
 
-
+    // EFFECTS: runs the Grade Book application
     public GradeBookApp() {
         runGradeBook();
     }
 
-
+    // MODIFIES: this
+    // EFFECTS: processes user's input
     public void runGradeBook() {
         boolean running = true;
         String givenCommand = null;
@@ -40,6 +42,8 @@ public class GradeBookApp {
 
     }
 
+    // MODIFIES: this
+    // EFFECTS: processes user given command
     public void processGivenCmd(String command) {
         if (command.equals("a")) {
             runAddCourse();
@@ -54,14 +58,15 @@ public class GradeBookApp {
         }
     }
 
-
+    // MODIFIES: this
+    // EFFECTS: initializes GradeBook
     public void initialize() {
         gradeBook = new GradeBook();
         input = new Scanner(System.in);
         input.useDelimiter("\n");
     }
 
-
+    // EFFECTS: displays the available options to user
     public void chooseOptions() {
         System.out.println("\nWelcome to Student Grade Book. Please select an option:");
         System.out.println("\ta -> Add Course to the Grade Book");
@@ -70,7 +75,8 @@ public class GradeBookApp {
         System.out.println("\tg -> View Total Average and Credits Earned");
     }
 
-
+    // MODIFIES: this, coursesList
+    // EFFECTS: Adds a Course with details provided by user
     public void runAddCourse() {
         System.out.println("Enter the Course that you would like to add:");
         String name = input.next();
@@ -86,7 +92,8 @@ public class GradeBookApp {
         System.out.println("Course has been added successfully!");
     }
 
-
+    // MODIFIES: this
+    // EFFECTS: Processes the user input to remove a course
     public void runRemoveCourse() {
         if (gradeBook.getCourses().isEmpty()) {
             System.out.println("\n Grade Book is empty!!!");
@@ -112,12 +119,15 @@ public class GradeBookApp {
 
     }
 
+    // EFFECTS: displays the available remove options to user
     public void removeOps() {
         System.out.println("\n Please select an option:");
         System.out.println("\tr -> Remove a Course");
         System.out.println("\tc -> Clear all courses");
     }
 
+    // MODIFIES: this, coursesList
+    // EFFECTS: deletes a Course using the name input provided by user
     public void deleteCourse() {
 
         System.out.println("\n Enter the course name to delete:");
@@ -139,7 +149,8 @@ public class GradeBookApp {
 
     }
 
-
+    // MODIFIES: this, coursesList
+    // EFFECTS: Removes all the Courses from the Grade Book
     public void clearAllCourses() {
 
         gradeBook.getCourses().clear();
@@ -148,6 +159,7 @@ public class GradeBookApp {
 
     }
 
+    // EFFECTS: Displays all the names of the courses in the coursesList
     public void runViewAllCourses() {
         if (gradeBook.getCourses().isEmpty()) {
             System.out.println("There are no courses to view. Try adding some courses..");
@@ -165,6 +177,8 @@ public class GradeBookApp {
         }
     }
 
+    //EFFECTS: displays the total average and credits of all courses in the coursesList along with
+    // all the details of each course including the grade and credits.
     public void runAverageAndCredits() {
         if (gradeBook.getCourses().isEmpty()) {
             System.out.println("\n Grade Book is empty!!! Add some courses..");
