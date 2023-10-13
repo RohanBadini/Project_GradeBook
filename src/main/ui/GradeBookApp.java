@@ -3,6 +3,7 @@ package ui;
 import model.Course;
 import model.GradeBook;
 
+import java.util.List;
 import java.util.Scanner;
 
 ///This class is inspired from Teller App https://github.students.cs.ubc.ca/CPSC210/TellerApp
@@ -73,24 +74,40 @@ public class GradeBookApp {
         System.out.println("\tr -> Remove Course from the Grade Book");
         System.out.println("\tv -> View All Courses in the Grade Book");
         System.out.println("\tg -> View Total Average and Credits Earned");
+        System.out.println("\tq -> Quit Application");
     }
 
-    // MODIFIES: this, coursesList
-    // EFFECTS: Adds a Course with details provided by user
+    //MODIFIES: this, coursesList
+    //EFFECTS: Adds a Course with details provided by user
     public void runAddCourse() {
         System.out.println("Enter the Course that you would like to add:");
-        String name = input.next();
+        String name = input.next().toUpperCase();
         System.out.println("Enter course credits:");
         int credits = input.nextInt();
         System.out.println("Enter your Grade:");
         int grade = input.nextInt();
 
-
         Course course = new Course(name, credits, grade);
-        gradeBook.addCourse(course);
 
-        System.out.println("Course has been added successfully!");
+        if (!gradeBook.getCourses().isEmpty() && isCourseAlreadyAdded(name)) {
+            System.out.println("Sorry! This course has already been added!!!");
+        } else {
+            gradeBook.addCourse(course);
+            System.out.println("Course has been added successfully!");
+        }
+
     }
+
+    //EFFECTS: Helper for runAddCourse to check if the course is already there
+    public boolean isCourseAlreadyAdded(String courseName) {
+        for (Course exCourse : gradeBook.getCourses()) {
+            if (courseName.equals(exCourse.getName())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
 
     // MODIFIES: this
     // EFFECTS: Processes the user input to remove a course
@@ -101,11 +118,11 @@ public class GradeBookApp {
             boolean state = true;
             while (state) {
                 removeOps();
-                String removeinput = input.next();
-                if (removeinput.equals("r")) {
+                String removeInput = input.next();
+                if (removeInput.equals("r")) {
                     deleteCourse();
                     state = false;
-                } else if (removeinput.equals("c")) {
+                } else if (removeInput.equals("c")) {
                     clearAllCourses();
                     state = false;
                 } else {
@@ -132,7 +149,7 @@ public class GradeBookApp {
 
         System.out.println("\n Enter the course name to delete:");
         boolean isRemoved = false;
-        String removeInput = input.next();
+        String removeInput = input.next().toUpperCase();
         for (Course rcourse : gradeBook.getCourses()) {
             if (removeInput.equals(rcourse.getName())) {
                 gradeBook.removeCourse(rcourse);

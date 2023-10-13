@@ -19,6 +19,7 @@ public class GradeBook {
     //EFFECTS: Adds the given course to the coursesList
     public void addCourse(Course course) {
         coursesList.add(course);
+
     }
 
     //MODIFIES: this,coursesList
