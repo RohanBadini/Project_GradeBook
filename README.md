@@ -24,3 +24,5 @@ This application aims to simplify academic record-keeping, empowering students t
 - As a user, I want to view a list of all the courses I've added to my grade book, including their names, overall grades, and credits earned, for a quick overview of my academic history.
 - As a user, I want to calculate the total average grade of all the courses in my grade book.
 - As a user, I want to calculate the total credits earned from all the courses in my grade book.
+- As a user, I want to be able to save my GradeBook to file (if I so choose)
+- As a user, I want to be able to be able to load my GradeBook from file (if I so choose)
