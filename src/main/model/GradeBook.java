@@ -72,7 +72,7 @@ public class GradeBook implements Writable {
         return json;
     }
 
-    // EFFECTS: returns things in this workroom as a JSON array
+    // EFFECTS: returns courses in this GradeBook as a JSON array
     private JSONArray coursesToJson() {
         JSONArray jsonArray = new JSONArray();
 
