@@ -237,7 +237,7 @@ public class GradeBookApp {
 
     }
 
-    // EFFECTS: saves the workroom to file
+    // EFFECTS: saves the GradeBook to file
     private void saveWorkRoom() {
         try {
             jsonWriter.open();
@@ -250,7 +250,7 @@ public class GradeBookApp {
     }
 
     // MODIFIES: this
-    // EFFECTS: loads workroom from file
+    // EFFECTS: loads GradeBook from file
     private void loadWorkRoom() {
         try {
             gradeBook = jsonReader.read();

@@ -12,7 +12,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.stream.Stream;
 
-// Represents a reader that reads workroom from JSON data stored in file
+// Represents a reader that reads GradeBook from JSON data stored in file
 public class JsonReader {
     private String source;
 
@@ -21,7 +21,7 @@ public class JsonReader {
         this.source = source;
     }
 
-    // EFFECTS: reads workroom from file and returns it;
+    // EFFECTS: reads GradeBook from file and returns it;
     // throws IOException if an error occurs reading data from file
     public GradeBook read() throws IOException {
         String jsonData = readFile(source);
@@ -40,7 +40,7 @@ public class JsonReader {
         return contentBuilder.toString();
     }
 
-    // EFFECTS: parses workroom from JSON object and returns it
+    // EFFECTS: parses GradeBook from JSON object and returns it
     private GradeBook parseWorkRoom(JSONObject jsonObject) {
         String name = jsonObject.getString("name");
         GradeBook gb = new GradeBook(name);
@@ -48,8 +48,8 @@ public class JsonReader {
         return gb;
     }
 
-    // MODIFIES: wr
-    // EFFECTS: parses thingies from JSON object and adds them to workroom
+    // MODIFIES: gb
+    // EFFECTS: parses courses from JSON object and adds them to GradeBook
     private void addCourses(GradeBook gb, JSONObject jsonObject) {
         JSONArray jsonArray = jsonObject.getJSONArray("courses");
         for (Object json : jsonArray) {
@@ -58,8 +58,8 @@ public class JsonReader {
         }
     }
 
-    // MODIFIES: wr
-    // EFFECTS: parses thingy from JSON object and adds it to workroom
+    // MODIFIES: gb
+    // EFFECTS: parses courses from JSON object and adds it to GradeBook
     private void addCourse(GradeBook gb, JSONObject jsonObject) {
         String name = jsonObject.getString("name");
         int credits = jsonObject.getInt("credits");
