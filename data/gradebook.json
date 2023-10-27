@@ -1,0 +1,15 @@
+{
+    "courses": [
+        {
+            "credits": 2,
+            "grade": 97,
+            "name": "CPSC 121"
+        },
+        {
+            "credits": 4,
+            "grade": 78,
+            "name": "CPSC 213"
+        }
+    ],
+    "name": "Rohan's workroom"
+}

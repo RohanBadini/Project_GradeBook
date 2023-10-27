@@ -2,19 +2,28 @@ package ui;
 
 import model.Course;
 import model.GradeBook;
+import persistence.JsonReader;
+import persistence.JsonWriter;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.List;
 import java.util.Scanner;
 
 ///This class is inspired from Teller App https://github.students.cs.ubc.ca/CPSC210/TellerApp
 
+///Save and Load Features are inspired from https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo.git
+
 //Represents Student Grade Book Application
 public class GradeBookApp {
+    private static final String JSON_STORE = "./data/gradebook.json";
     private Scanner input;
     private GradeBook gradeBook;
+    private JsonWriter jsonWriter;
+    private JsonReader jsonReader;
 
     // EFFECTS: runs the Grade Book application
-    public GradeBookApp() {
+    public GradeBookApp() throws FileNotFoundException {
         runGradeBook();
     }
 
@@ -54,6 +63,10 @@ public class GradeBookApp {
             runViewAllCourses();
         } else if (command.equals("g")) {
             runAverageAndCredits();
+        } else if (command.equals("s")) {
+            saveWorkRoom();
+        } else if (command.equals("l")) {
+            loadWorkRoom();
         } else {
             System.out.println("Sorry! Invalid Selection. Please try again...");
         }
@@ -62,7 +75,9 @@ public class GradeBookApp {
     // MODIFIES: this
     // EFFECTS: initializes GradeBook
     public void initialize() {
-        gradeBook = new GradeBook();
+        jsonWriter = new JsonWriter(JSON_STORE);
+        jsonReader = new JsonReader(JSON_STORE);
+        gradeBook = new GradeBook("Rohan's workroom");
         input = new Scanner(System.in);
         input.useDelimiter("\n");
     }
@@ -73,6 +88,8 @@ public class GradeBookApp {
         System.out.println("\ta -> Add Course to the Grade Book");
         System.out.println("\tr -> Remove Course from the Grade Book");
         System.out.println("\tv -> View All Courses in the Grade Book");
+        System.out.println("\ts -> save GradeBook to file");
+        System.out.println("\tl -> load GradeBook from file");
         System.out.println("\tg -> View Total Average and Credits Earned");
         System.out.println("\tq -> Quit Application");
     }
@@ -219,6 +236,37 @@ public class GradeBookApp {
         }
 
     }
+
+    // EFFECTS: saves the workroom to file
+    private void saveWorkRoom() {
+        try {
+            jsonWriter.open();
+            jsonWriter.write(gradeBook);
+            jsonWriter.close();
+            System.out.println("Saved " + gradeBook.getName() + " to " + JSON_STORE);
+        } catch (FileNotFoundException e) {
+            System.out.println("Unable to write to file: " + JSON_STORE);
+        }
+    }
+
+    // MODIFIES: this
+    // EFFECTS: loads workroom from file
+    private void loadWorkRoom() {
+        try {
+            gradeBook = jsonReader.read();
+            System.out.println("Loaded " + gradeBook.getName() + " from " + JSON_STORE);
+        } catch (IOException e) {
+            System.out.println("Unable to read from file: " + JSON_STORE);
+        }
+    }
+
+
+
+
+
+
+
+
 
 }
 

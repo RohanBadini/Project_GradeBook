@@ -1,17 +1,27 @@
 package model;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+import persistence.Writable;
+
 import java.util.ArrayList;
 import java.util.List;
 
 //Represents a GradeBook with List of Courses and total credits
-public class GradeBook {
+public class GradeBook implements Writable {
     private List<Course> coursesList;
     private int totalCredits;
+    private String name;
 
     // EFFECTS: Constructs a grade book with an empty list and 0 gained credits
-    public GradeBook() {
+    public GradeBook(String name) {
+        this.name = name;
         coursesList = new ArrayList<>();
         totalCredits = 0;
+    }
+
+    public String getName() {
+        return name;
     }
 
     //REQUIRES: credits > 0
@@ -51,6 +61,26 @@ public class GradeBook {
 
     public List<Course> getCourses() {
         return coursesList;
+    }
+
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("name", name);
+        json.put("courses", coursesToJson());
+        return json;
+    }
+
+    // EFFECTS: returns things in this workroom as a JSON array
+    private JSONArray coursesToJson() {
+        JSONArray jsonArray = new JSONArray();
+
+        for (Course c : coursesList) {
+            jsonArray.put(c.toJson());
+        }
+
+        return jsonArray;
     }
 
 

@@ -15,7 +15,7 @@ public class GradeBookTest {
 
     @BeforeEach
     void runBefore() {
-        testGradeBook = new GradeBook();
+        testGradeBook = new GradeBook("Test GradeBook");
         cpsc310 = new Course("CPSC 310", 3,89);
         cpsc110 = new Course("CPSC 110", 4, 92);
         cpsc121 = new Course("CPSC 121", 4, 78);

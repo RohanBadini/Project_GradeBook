@@ -1,0 +1,15 @@
+{
+  "courses": [
+    {
+      "credits": 4,
+      "grade": 98,
+      "name": "CPSC 210"
+    },
+    {
+      "credits": 4,
+      "grade": 89,
+      "name": "CPSC 110"
+    }
+  ],
+  "name": "My grade book"
+}
