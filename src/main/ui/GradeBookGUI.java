@@ -31,8 +31,6 @@ public class GradeBookGUI extends JFrame {
     }
 
 
-
-
     public void intializeHomePage() {
         homeFrame = new JFrame("Student GradeBook");
         homeFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -82,7 +80,6 @@ public class GradeBookGUI extends JFrame {
         initializeActionButtons();
 
 
-
     }
 
     public void initializeActionButtons() {
@@ -95,7 +92,6 @@ public class GradeBookGUI extends JFrame {
         calculateGradeButton();
 
     }
-
 
 
     public void addCourseButton() {
@@ -132,8 +128,8 @@ public class GradeBookGUI extends JFrame {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-             removeops();
- }
+                removeops();
+            }
         });
         mainHomeBtnsPanel.add(removeButn);
 
@@ -141,7 +137,7 @@ public class GradeBookGUI extends JFrame {
 
     public void removeops() {
         removeBox = new JDialog();
-        removeBox.setSize(300,200);
+        removeBox.setSize(300, 200);
         removeBox.setLayout(null);
         removeBox.setTitle("Select an option to proceed");
         removeBox.setLocationRelativeTo(removeButn);
@@ -194,18 +190,9 @@ public class GradeBookGUI extends JFrame {
     }
 
 
-
-
-
-
-
-
-
     public void clearAllCourses() {
         mygradebook.getCourses().clear();
     }
-
-
 
 
     public void viewAllButton() {
@@ -316,8 +303,6 @@ public class GradeBookGUI extends JFrame {
                     "Unable to read from file: " + JSON_LOCATION);
         }
     }
-
-
 
 
     public void quitButton() {
