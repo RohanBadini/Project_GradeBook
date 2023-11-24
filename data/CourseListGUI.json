@@ -1,20 +1,25 @@
 {
     "courses": [
         {
-            "credits": 3,
-            "grade": 89,
-            "name": "CPSC 100"
-        },
-        {
             "credits": 4,
-            "grade": 77,
+            "grade": 89,
             "name": "CPSC 121"
         },
         {
-            "credits": 3,
-            "grade": 80,
-            "name": "CPSC 210"
+            "credits": 4,
+            "grade": 76,
+            "name": "CPSC 110"
+        },
+        {
+            "credits": 4,
+            "grade": 81,
+            "name": "CPSC 221"
+        },
+        {
+            "credits": 4,
+            "grade": 72,
+            "name": "CPSC 213"
         }
     ],
-    "name": "Rohan's workroom"
+    "name": "MyGradeBook"
 }

@@ -42,12 +42,12 @@ public class AddCoursePanel extends JPanel {
         nametext = new JTextField(10);
         nametext.setBounds(190, 200, 300, 50);
         add(nametext);
-        gradetext = new JTextField(3);
-        gradetext.setBounds(190, 300, 300, 50);
-        add(gradetext);
-        creditstext = new JTextField(1);
-        creditstext.setBounds(190, 400, 300, 50);
+        creditstext = new JTextField(3);
+        creditstext.setBounds(190, 300, 300, 50);
         add(creditstext);
+        gradetext = new JTextField(1);
+        gradetext.setBounds(190, 400, 300, 50);
+        add(gradetext);
 
 
     }

@@ -1,5 +1,6 @@
 package ui;
 
+import model.Course;
 import model.GradeBook;
 
 import javax.swing.*;
@@ -77,8 +78,7 @@ public class RemoveCoursePanel extends JPanel {
         removebtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-//                addcoursegi();
-                System.exit(0);
+                deleteCourse();
             }
         });
 
@@ -102,6 +102,31 @@ public class RemoveCoursePanel extends JPanel {
         nametext = new JTextField(10);
         nametext.setBounds(260, 250, 300, 50);
         add(nametext);
+
+    }
+
+
+    public void deleteCourse() {
+
+//        System.out.println("\n Enter the course name to delete:");
+        boolean isRemoved = false;
+        String removeInput = nametext.getText().toUpperCase();
+        for (Course rcourse : mygradebook.getCourses()) {
+            if (removeInput.equals(rcourse.getName())) {
+                mygradebook.removeCourse(rcourse);
+                JOptionPane.showMessageDialog(null,
+                        "Course Removed successfully!");
+//                System.out.println("Course Removed Successfully");
+                isRemoved = true;
+                break;
+            }
+        }
+        if (!isRemoved) {
+//            System.out.println("There is no course named " + removeInput);
+            JOptionPane.showMessageDialog(null,
+                    "There is no course named " + removeInput);
+        }
+
 
     }
 

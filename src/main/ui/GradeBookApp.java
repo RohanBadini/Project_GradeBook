@@ -7,7 +7,6 @@ import persistence.JsonWriter;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.List;
 import java.util.Scanner;
 
 ///This class is inspired from Teller App https://github.students.cs.ubc.ca/CPSC210/TellerApp
@@ -64,9 +63,9 @@ public class GradeBookApp {
         } else if (command.equals("g")) {
             runAverageAndCredits();
         } else if (command.equals("s")) {
-            saveWorkRoom();
+            saveGradeBook();
         } else if (command.equals("l")) {
-            loadWorkRoom();
+            loadGradeBook();
         } else {
             System.out.println("Sorry! Invalid Selection. Please try again...");
         }
@@ -238,7 +237,7 @@ public class GradeBookApp {
     }
 
     // EFFECTS: saves the GradeBook to file
-    private void saveWorkRoom() {
+    private void saveGradeBook() {
         try {
             jsonWriter.open();
             jsonWriter.write(gradeBook);
@@ -251,7 +250,7 @@ public class GradeBookApp {
 
     // MODIFIES: this
     // EFFECTS: loads GradeBook from file
-    private void loadWorkRoom() {
+    private void loadGradeBook() {
         try {
             gradeBook = jsonReader.read();
             System.out.println("Loaded " + gradeBook.getName() + " from " + JSON_STORE);

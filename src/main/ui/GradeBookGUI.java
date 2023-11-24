@@ -8,19 +8,20 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 
 
 public class GradeBookGUI extends JFrame {
     private JFrame homeFrame;
-    //    private JPanel leftLogo;
     GradeBook mygradebook;
     private JPanel imageLogoPanel;
     static JPanel mainHomeBtnsPanel;
     private static final String JSON_LOCATION = "./data/CourseListGUI.json";
     private JsonWriter jsonWriter;
     private JsonReader jsonReader;
-//    public cardLayout = new CardLayout();
-
+    private JDialog removeBox;
+    private JButton removeButn;
 
     public GradeBookGUI() {
         intializeHomePage();
@@ -36,7 +37,6 @@ public class GradeBookGUI extends JFrame {
         homeFrame = new JFrame("Student GradeBook");
         homeFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         homeFrame.setVisible(true);
-//        frame.pack();
         homeFrame.setSize(900, 650);
         homeFrame.setLayout(null);
         initializePanels();
@@ -46,8 +46,6 @@ public class GradeBookGUI extends JFrame {
 
     public void initializePanels() {
         logoPanel();
-//        HomePanel mainPanel = new HomePanel(mygradebook);
-//        homeFrame.add(mainPanel);
         mainPanel();
 
     }
@@ -63,10 +61,9 @@ public class GradeBookGUI extends JFrame {
         };
         homeFrame.add(imageLogoPanel);
         imageLogoPanel.setLayout(null);
-//        imageLogoPanel.setBackground(Color.green);
         imageLogoPanel.setBounds(0, 0, 300, 622);
 
-        //add images, logos or gifs
+
     }
 
     public void mainPanel() {
@@ -81,8 +78,6 @@ public class GradeBookGUI extends JFrame {
 
         homeFrame.add(mainHomeBtnsPanel);
         mainHomeBtnsPanel.setLayout(null);
-
-//        mainHomeBtnsPanel.setBackground(Color.BLUE);
         mainHomeBtnsPanel.setBounds(300, 0, 600, 622);
         initializeActionButtons();
 
@@ -103,15 +98,6 @@ public class GradeBookGUI extends JFrame {
 
 
 
-//    public void resetToMain(JPanel currentpanel) {
-//        getContentPane().remove(currentpanel);
-//        currentpanel.removeAll();
-//        homeFrame.add(mainHomeBtnsPanel);
-//        mainHomeBtnsPanel.validate();
-//        mainHomeBtnsPanel.repaint();
-//
-//    }
-
     public void addCourseButton() {
         JButton addButn = new JButton("Add Course");
         addButn.setFont(new Font("Comic Sans MS", Font.PLAIN, 18));
@@ -122,21 +108,9 @@ public class GradeBookGUI extends JFrame {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-//                AddCourseButton window = new AddCourseButton(mygradebook);
-//                window.AddCourseButton.setVisible(true);
-
-
-//                getContentPane().remove(mainHomeBtnsPanel);
-//                mainHomeBtnsPanel.removeAll();
 
                 mainHomeBtnsPanel.setVisible(false);
-
-
-                AddCoursePanel addCoursePanel = new AddCoursePanel(mygradebook);//
-//                addCoursePanel.setBackground(Color.BLUE);//
-//                addCoursePanel.setLayout(null);//
-//                addCoursePanel.setBounds(300, 0, 600, 622);//
-
+                AddCoursePanel addCoursePanel = new AddCoursePanel(mygradebook);
                 homeFrame.add(addCoursePanel);//
                 addCoursePanel.validate();//
                 addCoursePanel.repaint();//
@@ -149,7 +123,7 @@ public class GradeBookGUI extends JFrame {
     }
 
     public void removeCourseButton() {
-        JButton removeButn = new JButton("Remove Course");
+        removeButn = new JButton("Remove Course");
         removeButn.setFont(new Font("Comic Sans MS", Font.PLAIN, 18));
         removeButn.setBounds(205, 220, 190, 70);
         removeButn.setCursor(new Cursor(Cursor.HAND_CURSOR));
@@ -158,18 +132,81 @@ public class GradeBookGUI extends JFrame {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                mainHomeBtnsPanel.setVisible(false);
-
-
-                RemoveCoursePanel removeCoursePanel = new RemoveCoursePanel(mygradebook);//
-                homeFrame.add(removeCoursePanel);//
-                removeCoursePanel.validate();//
-                removeCoursePanel.repaint();//
-            }
+             removeops();
+ }
         });
         mainHomeBtnsPanel.add(removeButn);
 
     }
+
+    public void removeops() {
+        removeBox = new JDialog();
+        removeBox.setSize(300,200);
+        removeBox.setLayout(null);
+        removeBox.setTitle("Select an option to proceed");
+        removeBox.setLocationRelativeTo(removeButn);
+        removeBox.getContentPane().setBackground(Color.gray);
+        removeBox.setBackground(Color.blue);
+        deleteAllButton();
+        deleteOneButton();
+        removeBox.setVisible(true);
+    }
+
+    public void deleteAllButton() {
+        JButton deleteAll = new JButton("Remove All Courses");
+        deleteAll.setFont(new Font("Comic Sans MS", Font.PLAIN, 18));
+        deleteAll.setBounds(25, 100, 250, 50);
+        deleteAll.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        removeBox.add(deleteAll);
+
+        deleteAll.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                removeBox.dispose();
+                clearAllCourses();
+                JOptionPane.showMessageDialog(null,
+                        "All courses are removed!!!");
+            }
+        });
+    }
+
+    //
+    public void deleteOneButton() {
+        JButton deleteOne = new JButton("Remove a course");
+        deleteOne.setFont(new Font("Comic Sans MS", Font.PLAIN, 18));
+        deleteOne.setBounds(25, 20, 250, 50);
+        deleteOne.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        removeBox.add(deleteOne);
+
+        deleteOne.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                RemoveCoursePanel removeCoursePanel = new RemoveCoursePanel(mygradebook);
+                homeFrame.add(removeCoursePanel);
+                mainHomeBtnsPanel.setVisible(false);
+                removeCoursePanel.validate();
+                removeCoursePanel.repaint();
+                removeBox.dispose();
+            }
+        });
+    }
+
+
+
+
+
+
+
+
+
+    public void clearAllCourses() {
+        mygradebook.getCourses().clear();
+    }
+
+
+
 
     public void viewAllButton() {
         JButton viewAllButn = new JButton("View All Courses");
@@ -181,7 +218,13 @@ public class GradeBookGUI extends JFrame {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.exit(0);
+                mainHomeBtnsPanel.setVisible(false);
+
+
+                ViewAllPanel viewAllPanel = new ViewAllPanel(mygradebook);
+                homeFrame.add(viewAllPanel);
+                viewAllPanel.validate();
+                viewAllPanel.repaint();
             }
         });
         mainHomeBtnsPanel.add(viewAllButn);
@@ -198,7 +241,13 @@ public class GradeBookGUI extends JFrame {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.exit(0);
+                mainHomeBtnsPanel.setVisible(false);
+
+
+                ProgressReportPanel progressReportPanel = new ProgressReportPanel(mygradebook);
+                homeFrame.add(progressReportPanel);
+                progressReportPanel.validate();
+                progressReportPanel.repaint();
             }
         });
         mainHomeBtnsPanel.add(calcButn);
@@ -211,18 +260,33 @@ public class GradeBookGUI extends JFrame {
         saveButn.setFont(new Font("Comic Sans MS", Font.PLAIN, 14));
         saveButn.setBounds(250, 560, 90, 50);
         saveButn.setCursor(new Cursor(Cursor.HAND_CURSOR));
-        //saveButn.setBounds(480, 550, 80, 40);
 
         saveButn.addActionListener(new ActionListener() {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.exit(0);
+                saveGradeBook();
             }
         });
         mainHomeBtnsPanel.add(saveButn);
 
 
+    }
+
+
+    // EFFECTS: saves the GradeBook to file
+    private void saveGradeBook() {
+        try {
+            jsonWriter.open();
+            jsonWriter.write(mygradebook);
+            jsonWriter.close();
+            JOptionPane.showMessageDialog(null,
+                    "Saved " + mygradebook.getName() + " to " + JSON_LOCATION);
+
+        } catch (FileNotFoundException e) {
+            JOptionPane.showMessageDialog(null,
+                    "Unable to write to file: " + JSON_LOCATION);
+        }
     }
 
     public void loadButton() {
@@ -235,13 +299,25 @@ public class GradeBookGUI extends JFrame {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.exit(0);
+                loadGradeBook();
             }
         });
         mainHomeBtnsPanel.add(loadButn);
 
-
     }
+
+    private void loadGradeBook() {
+        try {
+            mygradebook = jsonReader.read();
+            JOptionPane.showMessageDialog(null,
+                    "Loaded " + mygradebook.getName() + " from " + JSON_LOCATION);
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(null,
+                    "Unable to read from file: " + JSON_LOCATION);
+        }
+    }
+
+
 
 
     public void quitButton() {
@@ -260,12 +336,6 @@ public class GradeBookGUI extends JFrame {
         mainHomeBtnsPanel.add(quitButn);
 
     }
-//        quitButn.setBackground(new Color(255, 255, 255));
-//        quitButn.setForeground(new Color(0, 0, 0));
-
-
-//        frame.getContentPane().add(quitButn);
-
 
 }
 
