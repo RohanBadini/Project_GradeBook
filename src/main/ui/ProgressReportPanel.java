@@ -17,6 +17,7 @@ public class ProgressReportPanel extends JPanel {
     private JScrollPane reportDisplay;
     GradeBook mygradebook;
     private List<String> coursenames;
+    private int average;
 
 
     public ProgressReportPanel(GradeBook mygradebook) {
@@ -107,7 +108,13 @@ public class ProgressReportPanel extends JPanel {
 
     public void averageAndCreditsLabel() {
 
-        JLabel valAverageLabel = new JLabel("  " + mygradebook.totalAverage() + " %");
+        if (mygradebook.getCourses().size() == 0) {
+            average = 0;
+        } else {
+            average = mygradebook.totalAverage();
+        }
+
+        JLabel valAverageLabel = new JLabel("  " + average + " %");
         valAverageLabel.setBounds(280, 567, 60, 20);
         valAverageLabel.setFont(new Font("Sans Serif", Font.PLAIN, 17));
         valAverageLabel.setForeground(Color.black);

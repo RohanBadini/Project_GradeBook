@@ -53,14 +53,10 @@ public class GradeBook implements Writable {
     //EFFECTS: Calculate the overall average of all the courses in the coursesList
     public int totalAverage() {
         int totalCredsTimesGrade = 0;
-        if (coursesList.isEmpty()) {
-            return 0;
-        } else {
-            for (Course course : coursesList) {
-                totalCredsTimesGrade = totalCredsTimesGrade + (course.getGrade() * course.getCredits());
-            }
-            return (totalCredsTimesGrade / totalCredits());
+        for (Course course : coursesList) {
+            totalCredsTimesGrade = totalCredsTimesGrade + (course.getGrade() * course.getCredits());
         }
+        return (totalCredsTimesGrade / totalCredits());
     }
 
     public List<Course> getCourses() {
