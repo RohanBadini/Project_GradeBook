@@ -12,11 +12,13 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+// Represents a class with View All Panel to the user
 public class ViewAllPanel extends JPanel {
     private JScrollPane coursesDisplay;
     GradeBook mygradebook;
     private List<String> coursenames;
 
+    // EFFECTS: Initializes View All Layout and Buttons
     public ViewAllPanel(GradeBook mygradebook) {
         super();
         this.mygradebook = mygradebook;
@@ -29,6 +31,7 @@ public class ViewAllPanel extends JPanel {
 
     }
 
+    // EFFECTS: creates a scroller and adds it to the panel
     public void panelScroller() {
         runViewAllCourses();
         String[] array = coursenames.toArray(new String[coursenames.size()]);
@@ -43,24 +46,23 @@ public class ViewAllPanel extends JPanel {
 
     }
 
+    // EFFECTS: makes the list of courses that can be printed onto the panel
     public void runViewAllCourses() {
         coursenames = new ArrayList<>();
         if (mygradebook.getCourses().isEmpty()) {
-//            System.out.println("There are no courses to view. Try adding some courses..");
+//            don't nothing
         } else {
-
-//            System.out.println("\n List of All Courses:");
 
             for (int r = 0; r < mygradebook.getCourses().size(); r++) {
                 Course rcourse = mygradebook.getCourses().get(r);
                 int t = r + 1;
                 coursenames.add(t + ". " + rcourse.getName());
-//                System.out.println(t + ". " + rcourse.getName());
             }
 
         }
     }
 
+    // EFFECTS: Change the background of the panel
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
@@ -68,11 +70,13 @@ public class ViewAllPanel extends JPanel {
         g.drawImage(bgImage, 0, 0, getWidth(), getHeight(), this);
     }
 
+    // EFFECTS: Sets the panel layout and bounds
     public void panelLayout() {
         setLayout(null);
         setBounds(300, 0, 600, 622);
     }
 
+    // EFFECTS: Creates a title label for the panel and adds it to the frame
     public void panelMainLabel() {
 
         JLabel pageTitle = new JLabel("List of All the Courses added :");
@@ -86,7 +90,7 @@ public class ViewAllPanel extends JPanel {
 
     }
 
-
+    // EFFECTS: Creates a back button and when clicked , it navigates to the main panel, adds it to the panel.
     public void backbutton() {
         JButton bckbtn = new JButton("Go Back");
         bckbtn.setFont(new Font("Comic Sans MS", Font.PLAIN, 18));

@@ -11,7 +11,7 @@ import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
-
+// Represents a class with Main Window to the user
 public class GradeBookGUI extends JFrame {
     private JFrame homeFrame;
     GradeBook mygradebook;
@@ -23,6 +23,8 @@ public class GradeBookGUI extends JFrame {
     private JDialog removeBox;
     private JButton removeButn;
 
+    // MODIFIES : this
+    // Creates a gradebook GUI homepage
     public GradeBookGUI() {
         intializeHomePage();
         mygradebook = new GradeBook("MyGradeBook");
@@ -30,7 +32,7 @@ public class GradeBookGUI extends JFrame {
         jsonReader = new JsonReader(JSON_LOCATION);
     }
 
-
+    // EFFECTS: Initialize the layout and panels on the homepage
     public void intializeHomePage() {
         homeFrame = new JFrame("Student GradeBook");
         homeFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -42,12 +44,15 @@ public class GradeBookGUI extends JFrame {
 
     }
 
+    // EFFECTS: Initializes the panels on homepage
     public void initializePanels() {
         logoPanel();
         mainPanel();
 
     }
 
+    // MODIFIES: this
+    // EFFECTS: Creates a panel on the left side with gradebook logo as background.
     private void logoPanel() {
         imageLogoPanel = new JPanel() {
             @Override
@@ -64,6 +69,8 @@ public class GradeBookGUI extends JFrame {
 
     }
 
+    // MODIFIES: this
+    // EFFECTS: Creates a main panel on the right side of the frame with background and initializes the buttons method.
     public void mainPanel() {
         mainHomeBtnsPanel = new JPanel() {
             @Override
@@ -82,6 +89,8 @@ public class GradeBookGUI extends JFrame {
 
     }
 
+    // MODFIES: This
+    // EFFECTS: Initializes all the action buttons
     public void initializeActionButtons() {
         saveButton();
         quitButton();
@@ -93,7 +102,7 @@ public class GradeBookGUI extends JFrame {
 
     }
 
-
+    // EFFECTS: Creates an add button and adds it to the main panel.
     public void addCourseButton() {
         JButton addButn = new JButton("Add Course");
         addButn.setFont(new Font("Comic Sans MS", Font.PLAIN, 18));
@@ -118,6 +127,7 @@ public class GradeBookGUI extends JFrame {
 
     }
 
+    // EFFECTS: Creates an remove button and adds it to the main panel.
     public void removeCourseButton() {
         removeButn = new JButton("Remove Course");
         removeButn.setFont(new Font("Comic Sans MS", Font.PLAIN, 18));
@@ -135,6 +145,7 @@ public class GradeBookGUI extends JFrame {
 
     }
 
+    // EFFECTS: Creates a dialog box with all the remove option buttons.
     public void removeops() {
         removeBox = new JDialog();
         removeBox.setSize(300, 200);
@@ -148,6 +159,7 @@ public class GradeBookGUI extends JFrame {
         removeBox.setVisible(true);
     }
 
+    // EFFECTS: Creates a delete all button for remove dialog box
     public void deleteAllButton() {
         JButton deleteAll = new JButton("Remove All Courses");
         deleteAll.setFont(new Font("Comic Sans MS", Font.PLAIN, 18));
@@ -167,7 +179,7 @@ public class GradeBookGUI extends JFrame {
         });
     }
 
-    //
+    // EFFECTS: Creates a delete one course button for remove dialog box
     public void deleteOneButton() {
         JButton deleteOne = new JButton("Remove a course");
         deleteOne.setFont(new Font("Comic Sans MS", Font.PLAIN, 18));
@@ -189,12 +201,12 @@ public class GradeBookGUI extends JFrame {
         });
     }
 
-
+    // EFFECTS: Removes all the courses in the gradebook
     public void clearAllCourses() {
         mygradebook.getCourses().clear();
     }
 
-
+    // EFFECTS: Creates a view all button and navigates to the view all panel when clicked.
     public void viewAllButton() {
         JButton viewAllButn = new JButton("View All Courses");
         viewAllButn.setFont(new Font("Comic Sans MS", Font.PLAIN, 18));
@@ -218,6 +230,7 @@ public class GradeBookGUI extends JFrame {
 
     }
 
+    // EFFECTS: Creates the progress report button and navigates to the progress report panel when clicked
     public void calculateGradeButton() {
         JButton calcButn = new JButton("Progress Report");
         calcButn.setFont(new Font("Comic Sans MS", Font.PLAIN, 18));
@@ -241,7 +254,7 @@ public class GradeBookGUI extends JFrame {
 
     }
 
-
+    // EFFECTS: Creates a save button and saves the gradebook when clicked.
     public void saveButton() {
         JButton saveButn = new JButton("Save");
         saveButn.setFont(new Font("Comic Sans MS", Font.PLAIN, 14));
@@ -276,6 +289,7 @@ public class GradeBookGUI extends JFrame {
         }
     }
 
+    // EFFECTS: Creates a load button and loads the gradebook when clicked.
     public void loadButton() {
         JButton loadButn = new JButton("Load");
         loadButn.setFont(new Font("Comic Sans MS", Font.PLAIN, 14));
@@ -293,6 +307,7 @@ public class GradeBookGUI extends JFrame {
 
     }
 
+    // EFFECTS: Loads the gradebook from the file
     private void loadGradeBook() {
         try {
             mygradebook = jsonReader.read();
@@ -304,7 +319,7 @@ public class GradeBookGUI extends JFrame {
         }
     }
 
-
+    // EFFECTS: Creates a quit button and exits the program when clicked
     public void quitButton() {
         JButton quitButn = new JButton("Quit");
         quitButn.setFont(new Font("Comic Sans MS", Font.PLAIN, 14));

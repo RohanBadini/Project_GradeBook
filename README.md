@@ -26,3 +26,12 @@ This application aims to simplify academic record-keeping, empowering students t
 - As a user, I want to calculate the total credits earned from all the courses in my grade book.
 - As a user, I want to be able to save my GradeBook to file (if I so choose)
 - As a user, I want to be able to be able to load my GradeBook from file (if I so choose)
+
+## Instruction for Grader:
+- You can add a course to the grade book by clicking on add course button
+- You can remove a course from the grade book by clicking on remove course button
+- You can view all the course added to the gradebook by clicking on view all button.
+- You can view the average grade and total credits along with all the courses, with individual grade and credits for each course.
+- After you’ve finished, you can save the gradebook by clicking on save button.
+- When you first open the gradebook, load the data using the load button.
+- You can exit the application by clicking on quit button

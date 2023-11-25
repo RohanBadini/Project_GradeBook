@@ -8,10 +8,13 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+// Represents a class with Remove Course Panel to the user
 public class RemoveCoursePanel extends JPanel {
     private JTextField nametext;
     GradeBook mygradebook;
 
+    // MODIFIES: this
+    // EFFECTS: Initializes layout and buttons
     public RemoveCoursePanel(GradeBook mygradebook) {
         super();
         this.mygradebook = mygradebook;
@@ -23,6 +26,7 @@ public class RemoveCoursePanel extends JPanel {
         removebutton();
     }
 
+    // EFFECTS: creates the labels and adds them to the panel
     public void panelSubLabels() {
 
         JLabel corsName = new JLabel("Enter Course Name :");
@@ -37,6 +41,7 @@ public class RemoveCoursePanel extends JPanel {
 
     }
 
+    // EFFECTS: Creates a title label for the panel and adds it to the frame
     public void panelMainLabel() {
 
         JLabel pageTitle = new JLabel("Enter the course name to remove...");
@@ -50,6 +55,7 @@ public class RemoveCoursePanel extends JPanel {
 
     }
 
+    // EFFECTS: Creates a back button and when clicked , it navigates to the main panel, adds it to the panel.
     public void backbutton() {
         JButton bckbtn = new JButton("Go Back");
         bckbtn.setFont(new Font("Comic Sans MS", Font.PLAIN, 18));
@@ -68,6 +74,7 @@ public class RemoveCoursePanel extends JPanel {
 
     }
 
+    // EFFECTS: Creates a remove button and when clicked, it removes a course from the list of courses
     public void removebutton() {
 
         JButton removebtn = new JButton("Remove Course");
@@ -86,11 +93,13 @@ public class RemoveCoursePanel extends JPanel {
 
     }
 
+    // EFFECTS: Sets the panel layout and bounds
     public void panelLayout() {
         setLayout(null);
         setBounds(300, 0, 600, 622);
     }
 
+    // EFFECTS: Change the background of the panel
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
@@ -98,6 +107,7 @@ public class RemoveCoursePanel extends JPanel {
         g.drawImage(bgImage, 0, 0, getWidth(), getHeight(), this);
     }
 
+    // EFFECTS: creates name text fields and adds it the panel
     public void panelTextFields() {
         nametext = new JTextField(10);
         nametext.setBounds(260, 250, 300, 50);
@@ -105,10 +115,9 @@ public class RemoveCoursePanel extends JPanel {
 
     }
 
-
+    // EFFECTS: Creates delete button, removes a course from the list of courses and adds it to the panel
     public void deleteCourse() {
 
-//        System.out.println("\n Enter the course name to delete:");
         boolean isRemoved = false;
         String removeInput = nametext.getText().toUpperCase();
         for (Course rcourse : mygradebook.getCourses()) {
@@ -116,13 +125,11 @@ public class RemoveCoursePanel extends JPanel {
                 mygradebook.removeCourse(rcourse);
                 JOptionPane.showMessageDialog(null,
                         "Course Removed successfully!");
-//                System.out.println("Course Removed Successfully");
                 isRemoved = true;
                 break;
             }
         }
         if (!isRemoved) {
-//            System.out.println("There is no course named " + removeInput);
             JOptionPane.showMessageDialog(null,
                     "There is no course named " + removeInput);
         }

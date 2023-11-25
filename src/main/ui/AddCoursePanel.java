@@ -8,12 +8,15 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+// Creates the add course panel
 public class AddCoursePanel extends JPanel {
     private JTextField nametext;
     private JTextField creditstext;
     private JTextField gradetext;
     GradeBook mygradebook;
 
+    // MODIFIES: This
+    // EFFECTS: Initializes layout and buttons
     public AddCoursePanel(GradeBook mygradebook) {
         super();
         this.mygradebook = mygradebook;
@@ -25,6 +28,7 @@ public class AddCoursePanel extends JPanel {
         backbutton();
     }
 
+    // EFFECTS: Creates a title label for the panel and adds it to the frame
     public void panelMainLabel() {
 
         JLabel pageTitle = new JLabel("Enter the course details below :");
@@ -38,6 +42,7 @@ public class AddCoursePanel extends JPanel {
 
     }
 
+    // EFFECTS: Creates text fields and add them to the panel
     public void panelTextFields() {
         nametext = new JTextField(10);
         nametext.setBounds(190, 200, 300, 50);
@@ -52,6 +57,7 @@ public class AddCoursePanel extends JPanel {
 
     }
 
+    // EFFECTS: Creates a add button and adds it to the panel
     public void addbutton() {
 
         JButton addbtn = new JButton("Add Course");
@@ -70,6 +76,7 @@ public class AddCoursePanel extends JPanel {
 
     }
 
+    // EFFECTS: Creates a back button and when clicked , it navigates to the main panel, adds it to the panel.
     public void backbutton() {
         JButton bckbtn = new JButton("Go Back");
         bckbtn.setFont(new Font("Comic Sans MS", Font.PLAIN, 18));
@@ -88,11 +95,13 @@ public class AddCoursePanel extends JPanel {
 
     }
 
+    // EFFECTS: Sets the panel layout and bounds
     public void panelLayout() {
         setLayout(null);
         setBounds(300, 0, 600, 622);
     }
 
+    // EFFECTS: Change the background of the panel
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
@@ -100,7 +109,7 @@ public class AddCoursePanel extends JPanel {
         g.drawImage(bgImage, 0, 0, getWidth(), getHeight(), this);
     }
 
-
+    // EFFECTS: creates the labels and adds them to the panel
     public void panelSubLabels() {
 
         JLabel corsName = new JLabel("Course Name :");
@@ -130,6 +139,7 @@ public class AddCoursePanel extends JPanel {
         add(noCredits);
     }
 
+    // EFFECTS: creates a new Course and adds it to the list of courses
     public void addcoursegi() {
         Course course = new Course(nametext.getText().toUpperCase(), Integer.parseInt(creditstext.getText()),
                 Integer.parseInt(gradetext.getText()));

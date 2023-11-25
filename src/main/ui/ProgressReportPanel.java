@@ -10,6 +10,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
+// Represents a class with Progress Report Panel to the user
 public class ProgressReportPanel extends JPanel {
     private JLabel pageTitle;
     private JLabel averageTotalLabel;
@@ -19,7 +20,7 @@ public class ProgressReportPanel extends JPanel {
     private List<String> coursenames;
     private int average;
 
-
+    // EFFECTS: Initializes Progress Report Panel Layout and Buttons
     public ProgressReportPanel(GradeBook mygradebook) {
         super();
         this.mygradebook = mygradebook;
@@ -31,6 +32,7 @@ public class ProgressReportPanel extends JPanel {
         averageAndCreditsLabel();
     }
 
+    // EFFECTS: creates a scroller and adds it to the panel
     public void panelScroller() {
         runViewAllCourses();
         String[] array = coursenames.toArray(new String[coursenames.size()]);
@@ -43,10 +45,11 @@ public class ProgressReportPanel extends JPanel {
 
     }
 
+    // EFFECTS: makes the list of courses that can be printed onto the panel
     public void runViewAllCourses() {
         coursenames = new ArrayList<>();
         if (mygradebook.getCourses().isEmpty()) {
-//            coursenames = <>;
+//            do nothing
         } else {
             for (int r = 0; r < mygradebook.getCourses().size(); r++) {
                 Course rcourse = mygradebook.getCourses().get(r);
@@ -57,6 +60,7 @@ public class ProgressReportPanel extends JPanel {
         }
     }
 
+    // EFFECTS: Change the background of the panel
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
@@ -64,6 +68,8 @@ public class ProgressReportPanel extends JPanel {
         g.drawImage(bgImage, 0, 0, getWidth(), getHeight(), this);
     }
 
+
+    // EFFECTS: Creates a title label for the panel and adds it to the frame
     public void panelMainLabel() {
 
         pageTitle = new JLabel("<html><u>Overall Progress</u></html>");
@@ -77,6 +83,7 @@ public class ProgressReportPanel extends JPanel {
 
     }
 
+    // EFFECTS: creates all the labels and adds them to the panel
     public void panelSubLabels() {
 
         creditsTotalLabel = new JLabel("Total Credits Earned :");
@@ -106,6 +113,7 @@ public class ProgressReportPanel extends JPanel {
 
     }
 
+    // EFFECTS: creates the labels for average and credits and adds it to the panel
     public void averageAndCreditsLabel() {
 
         if (mygradebook.getCourses().size() == 0) {
@@ -136,12 +144,13 @@ public class ProgressReportPanel extends JPanel {
 
     }
 
-
+    // EFFECTS: Sets the panel layout and bounds
     public void panelLayout() {
         setLayout(null);
         setBounds(300, 0, 600, 622);
     }
 
+    // EFFECTS: Creates a back button and when clicked , it navigates to the main panel, adds it to the panel.
     public void backbutton() {
         JButton bckbtn = new JButton("Go Back");
         bckbtn.setFont(new Font("Comic Sans MS", Font.PLAIN, 18));
