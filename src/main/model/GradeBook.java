@@ -28,6 +28,7 @@ public class GradeBook implements Writable {
     //MODIFIES: this, coursesList
     //EFFECTS: Adds the given course to the coursesList
     public void addCourse(Course course) {
+        EventLog.getInstance().logEvent(new Event(course.getName() + " has been added to the GradeBook"));
         coursesList.add(course);
 
     }
@@ -35,6 +36,7 @@ public class GradeBook implements Writable {
     //MODIFIES: this,coursesList
     //EFFECTS: Removes a course from the coursesList
     public void removeCourse(Course course) {
+        EventLog.getInstance().logEvent(new Event(course.getName() + " has been removed from the GradeBook"));
         coursesList.remove(course);
     }
 

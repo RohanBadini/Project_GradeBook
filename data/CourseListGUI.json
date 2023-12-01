@@ -2,11 +2,6 @@
     "courses": [
         {
             "credits": 4,
-            "grade": 89,
-            "name": "CPSC 121"
-        },
-        {
-            "credits": 4,
             "grade": 76,
             "name": "CPSC 110"
         },
@@ -19,6 +14,16 @@
             "credits": 4,
             "grade": 72,
             "name": "CPSC 213"
+        },
+        {
+            "credits": 3,
+            "grade": 78,
+            "name": "CPSC 100"
+        },
+        {
+            "credits": 3,
+            "grade": 76,
+            "name": "MATH 100"
         }
     ],
     "name": "MyGradeBook"

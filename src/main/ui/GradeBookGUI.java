@@ -1,5 +1,7 @@
 package ui;
 
+import model.Event;
+import model.EventLog;
 import model.GradeBook;
 import persistence.JsonReader;
 import persistence.JsonWriter;
@@ -330,11 +332,19 @@ public class GradeBookGUI extends JFrame {
 
             @Override
             public void actionPerformed(ActionEvent e) {
+                printEventlog();
                 System.exit(0);
             }
         });
         mainHomeBtnsPanel.add(quitButn);
 
+    }
+
+    //EFFECTS: prints all the events in the EventLog
+    public void printEventlog() {
+        for (Event newevent : EventLog.getInstance()) {
+            System.out.println(newevent.toString() + "\n");
+        }
     }
 
 }
