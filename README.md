@@ -27,7 +27,7 @@ This application aims to simplify academic record-keeping, empowering students t
 - As a user, I want to be able to save my GradeBook to file (if I so choose)
 - As a user, I want to be able to be able to load my GradeBook from file (if I so choose)
 
-## Instruction for Grader:
+## Instruction for User:
 - You can add a course to the grade book by clicking on add course button
 - You can remove a course from the grade book by clicking on remove course button
 - You can view all the course added to the gradebook by clicking on view all button.
